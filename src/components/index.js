@@ -1,4 +1,4 @@
-export { default as Login } from "./Login"
+export { default as Login } from "./Login.TXT"
 export { default as CreatePin } from "./CreatePin"
 export { default as Feed } from "./Feed"
 export { default as Navbar } from "./Navbar"

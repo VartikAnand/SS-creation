@@ -1,50 +1,46 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { GrGoogle } from "react-icons/gr";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { client } from "../utils/client";
-import { app } from "../utils/auth";
+import React, { useEffect } from 'react';
+import GoogleLogin from 'react-google-login';
+import { useNavigate } from 'react-router-dom';
+import { FcGoogle } from 'react-icons/fc';
 import { Logo, ssbgvideo } from "../Assets";
-
+import { client } from "../utils/client";
+import { gapi } from 'gapi-script'
 const Login = () => {
     const navigate = useNavigate();
-    const firebaseAuth = getAuth(app);
-    const provider = new GoogleAuthProvider();
-    const loginWithGoogle = async () => {
-        await signInWithPopup(firebaseAuth, provider).then((userCred) => {
 
+    // var accesToken = gapi.auth2.getToken().accesToken;
+    const responseGoogle = (response) => {
+        console.log(response)
+        localStorage.setItem('user', JSON.stringify(response.profileObj)
 
-            firebaseAuth.onAuthStateChanged((userCred) => {
-                // console.log(userCred)
-                //user info in the localbrowser storage
-                localStorage.setItem('user', JSON.stringify(userCred))
-
-                const { displayName, photoURL, uid } = userCred;
-                //savinf into local storage
-
-                const doc = {
-                    _id: uid,
-                    _type: 'user',
-                    userName: displayName,
-                    image: photoURL,
-
-                };
-                client.createIfNotExists(doc).then(() => {
-                    navigate('/*', { replace: true });
-                });
-            });
-
-
-
+        );
+        const { name, googleId, imageUrl } = response.profileObj;
+        const doc = {
+            _id: googleId,
+            _type: 'user',
+            userName: name,
+            image: imageUrl,
+        };
+        client.createIfNotExists(doc).then(() => {
+            navigate('/', { replace: true });
         });
     };
 
-    // login contianer
-    return (
+    useEffect(() => {
+        function start() {
+            gapi.client.init({
+                clideId: Response,
+                // scope: ""
+            })
+        };
 
+        gapi.load('client:auth2', start)
+    })
+
+
+    return (
         <div className="flex justify-start items-center flex-col h-screen">
-            <div className="relative w-full h-full">
-                {/* login screen video */}
+            <div className=" relative w-full h-full">
                 <video
                     src={ssbgvideo}
                     type="video/mp4"
@@ -52,42 +48,36 @@ const Login = () => {
                     controls={false}
                     muted
                     autoPlay
-                    className="w-full h-full object-cover "
+                    className="w-full h-full object-cover"
                 />
-            </div>
 
-            {/* overlay for the video */}
-            <div className="absolute flex-col flex justify-center items-center top-0 left-0 right-0 bottom-0 bg-blackOverlay">
-                {/* login content */}
+                <div className="absolute flex flex-col justify-center items-center top-0 right-0 left-0 bottom-0    bg-blackOverlay">
+                    <div className="p-5">
+                        <img src={Logo} alt="" width="130px" />
+                    </div>
 
-                {/* logo */}
-                <div
-
-                    className="flex pb-5 gap-2">
-                    <img
-                        src={Logo}
-                        alt=""
-                        className=" h-32 pt-3"
-
-                    />
-                    {/* <img src={Logo} alt=""
-                        className="h-16"
-                    /> */}
-
-                </div>
-
-                {/* login Button */}
-                <div
-                    onClick={loginWithGoogle}
-                    className=" cursor-pointer bg-white rounded-lg p-2 gap-2 shadow-2xl flex justify-center items-center text-xl text-secColor">
-                    <GrGoogle className=" text-primary " />
-                    SignIn With Google
+                    <div className="shadow-2xl">
+                        <GoogleLogin
+                            clientId={`${process.env.REACT_APP_GOOGLE_API_TOKEN}`} render={(renderProps) => (
+                                <button
+                                    type="button"
+                                    className="bg-mainColor flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none"
+                                    onClick={renderProps.onClick}
+                                    disabled={renderProps.disabled}
+                                >
+                                    <FcGoogle className="mr-4" /> Sign in with google
+                                </button>
+                            )}
+                            onSuccess={responseGoogle}
+                            onFailure={responseGoogle}
+                            cookiePolicy="single_host_origin"
+                            isSignedIn={true}
+                        />
+                    </div>
                 </div>
             </div>
         </div>
-    )
-
-
+    );
 };
 
 export default Login;

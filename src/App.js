@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { Login } from "./components";
+import Login from "./components/Login";
+
 import { Home } from "./conatinners";
 import { fetchUser } from "./utils/fetchUser";
 
