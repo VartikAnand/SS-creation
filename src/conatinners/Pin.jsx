@@ -6,10 +6,10 @@ import { CreatePin, Feed, Navbar, PinDetail, Search, UserProfile } from "../comp
 const MainPin = ({ user }) => {
     const [searchTerm, setSearchTerm] = useState("");
     return (
-        <div className="px-2 md:px-5 ">
-            <div className="bg-white">
+        <div className=" ">
+            {/* <div className="bg-white">
                 <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} user={user && user} />
-            </div>
+            </div> */}
 
             <div className="h-full scrollbar-hide">
                 <Routes>

@@ -8,7 +8,7 @@ import Pin from "./Pin";
 import { userQuery } from "../utils/data";
 import { Logo } from "../Assets";
 import { AiFillCloseCircle } from "react-icons/ai";
-import { UserProfile } from "../components";
+import { Navbar, Search, UserProfile } from "../components";
 import Sidebar from "./Sidebar";
 
 const Home = () => {
@@ -34,7 +34,7 @@ const Home = () => {
         // set scroll to the top of our page
         scrollRef.current.scrollTo(0, 0);
     }, []);
-
+    const [searchTerm, setSearchTerm] = useState("");
     const [toggleSidebar, setToggleSidebar] = useState(false);
 
     return (
@@ -61,11 +61,21 @@ const Home = () => {
                     </div>
                 )}
             </div>
-            <div className="pb-2 flex-1 h-screen overflow-y-scroll scrollbar-hide" ref={scrollRef}>
-                <Routes>
-                    <Route path="/user-profile/:userId" element={<UserProfile />} />
-                    <Route path="/*" element={<Pin user={user && user} />} />
-                </Routes>
+            <div className="bg-white">
+                <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} user={user && user} />
+
+                <div className="pb-2 flex-1 h-screen overflow-y-scroll scrollbar-hide" ref={scrollRef}>
+                    <Routes>
+                        <Route path="/user-profile/:userId" element={<UserProfile />} />
+                        <Route path="/*" element={<Pin user={user && user} />} />
+                        <Route
+                            path="/search"
+                            element={
+                                <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+                            }
+                        />
+                    </Routes>
+                </div>
             </div>
         </div>
     );

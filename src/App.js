@@ -11,12 +11,13 @@ import { fetchUser } from "./utils/fetchUser";
 
 const App = () => {
     const navigate = useNavigate();
+
     useEffect(() => {
-        return () => {
-            const user = fetchUser();
-            if (!user) navigate("/login");
-        };
-    }, [])
+        const User = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
+
+        if (!User) navigate('/login');
+    }, []);
+
     return (
         <Routes>
             <Route path="login" element={<Login />} />
