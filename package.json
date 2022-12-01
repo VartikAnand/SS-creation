@@ -16,6 +16,7 @@
     "react-masonry-css": "^1.0.16",
     "react-router-dom": "^6.4.4",
     "react-scripts": "5.0.1",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"
   },

@@ -8,14 +8,10 @@ const MainPin = ({ user }) => {
     return (
         <div className="px-2 md:px-5 ">
             <div className="bg-white">
-                <Navbar
-                    searchTerm={searchTerm}
-                    setSearchTerm={setSearchTerm}
-                    user={user}
-                />
+                <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} user={user && user} />
             </div>
 
-            <div className="h-full">
+            <div className="h-full scrollbar-hide">
                 <Routes>
                     {/* <Route path="/*" element={<Feed />} /> */}
                     <Route path="/" element={<Feed />} />
