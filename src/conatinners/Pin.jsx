@@ -4,12 +4,12 @@ import { CreatePin, Feed, Navbar, PinDetail, Search, UserProfile } from "../comp
 
 
 const MainPin = ({ user }) => {
-    // const [searchTerm, setSearchTerm] = useState("");
+    const [searchTerm, setSearchTerm] = useState("");
     return (
         <div className=" ">
-            {/* <div className="bg-white">
+            <div className="bg-white">
                 <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} user={user && user} />
-            </div> */}
+            </div>
 
             <div className="h-full scrollbar-hide">
                 <Routes>
@@ -22,12 +22,12 @@ const MainPin = ({ user }) => {
                         element={<PinDetail user={user} />}
                     />
                     <Route path="/create-pin" element={<CreatePin user={user} />} />
-                    {/* <Route
+                    <Route
                         path="/search"
                         element={
                             <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
                         }
-                    /> */}
+                    />
                 </Routes>
             </div>
         </div>

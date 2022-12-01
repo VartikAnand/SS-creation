@@ -1,55 +1,48 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import React, { useState, useRef, useEffect } from 'react';
 import { HiMenu } from 'react-icons/hi';
+import { AiFillCloseCircle } from 'react-icons/ai';
+import { Link, Route, Routes } from 'react-router-dom';
+import { userQuery } from '../utils/data';
+import { client } from '../utils/client';
+import { Logo } from '../Assets';
+import Sidebar from './Sidebar';
+import { UserProfile } from '../components';
+import { Pin } from '.';
 
-import { client } from "../utils/client";
-import { fetchUser } from "../utils/fetchUser";
-import Pin from "./Pin";
-import { userQuery } from "../utils/data";
-import { Logo } from "../Assets";
-import { AiFillCloseCircle } from "react-icons/ai";
-import { Navbar, Search, UserProfile } from "../components";
-import Sidebar from "./Sidebar";
+
 
 const Home = () => {
-    const [user, setUser] = useState(null);
-    // categories Scroll references
+    const [toggleSidebar, setToggleSidebar] = useState(false);
+    const [user, setUser] = useState();
     const scrollRef = useRef(null);
 
-    // getting logged in user infor from the local browser storage
+    const userInfo = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
 
-    const userInfo = fetchUser();
-    // Fetch that matching user from the sanity
     useEffect(() => {
-        // create the sanity query to access the sanity
-        const query = userQuery(userInfo?.uid);
+        const query = userQuery(userInfo?.googleId);
 
         client.fetch(query).then((data) => {
-            console.log(data);
             setUser(data[0]);
         });
     }, []);
 
     useEffect(() => {
-        // set scroll to the top of our page
         scrollRef.current.scrollTo(0, 0);
-    }, []);
-    const [searchTerm, setSearchTerm] = useState("");
-    const [toggleSidebar, setToggleSidebar] = useState(false);
+    });
 
     return (
-        <div className="flex bg-gray-50 md:flex-row flex-col h-screen transition-height duration-75 ease-out scrollbar-hide">
-            <div className="hidden md:flex h-screen flex-initial bg-black">
+        <div className="flex bg-gray-50 md:flex-row flex-col h-screen transition-height duration-75 ease-out">
+            <div className="hidden md:flex h-screen flex-initial">
                 <Sidebar user={user && user} />
             </div>
-            <div className="flex md:hidden flex-row scrollbar-hide">
-                <div className="p-2 w-full flex flex-row justify-between items-center shadow-md">
-                    <HiMenu fontSize={38} className="cursor-pointer text-primary" onClick={() => setToggleSidebar(true)} />
+            <div className="flex md:hidden flex-row">
+                <div className="p-2 pl-2 w-full flex flex-row justify-between items-center shadow-md">
+                    <HiMenu fontSize={40} className=" text-primary cursor-pointer" onClick={() => setToggleSidebar(true)} />
                     <Link to="/">
-                        <img src={Logo} alt="logo" className="h-16" />
+                        <img src={Logo} alt="logo" className="w-14" />
                     </Link>
                     <Link to={`user-profile/${user?._id}`}>
-                        <img src={user?.image} alt="" className="w-10 h-10 rounded-full  bg-lightGray" />
+                        <img src={user?.image} alt="" className="w-9 h-9 rounded-full " />
                     </Link>
                 </div>
                 {toggleSidebar && (
@@ -61,21 +54,11 @@ const Home = () => {
                     </div>
                 )}
             </div>
-            <div className="bg-white">
-                <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} user={user && user} />
-
-                <div className="pb-2 flex-1 h-screen overflow-y-scroll scrollbar-hide" ref={scrollRef}>
-                    <Routes>
-                        <Route path="/user-profile/:userId" element={<UserProfile />} />
-                        <Route path="/*" element={<Pin user={user && user} />} />
-                        <Route
-                            path="/search"
-                            element={
-                                <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-                            }
-                        />
-                    </Routes>
-                </div>
+            <div className=" flex-1 h-screen overflow-y-scroll scrollbar-hide" ref={scrollRef}>
+                <Routes>
+                    <Route path="/user-profile/:userId" element={<UserProfile />} />
+                    <Route path="/*" element={<Pin user={user && user} />} />
+                </Routes>
             </div>
         </div>
     );
