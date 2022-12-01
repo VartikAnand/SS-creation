@@ -109,7 +109,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
                                 <a
                                     href={destination}
                                     target="_blank"
-                                    rel="norefferer"
+                                    rel="norefferer noreferrer"
 
                                     onClick={(e) => e.stopPropagation()}
                                     //     className="bg-white rounded-full opacity-70 hover:opacity-100 text-lightGray font-bold px-5 py-1 shadow-md outline-none"

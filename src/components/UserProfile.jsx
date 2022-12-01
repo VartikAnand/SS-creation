@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { AiOutlineLogout } from "react-icons/ai";
-import { useParams, useNavigate, Navigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import MasonryLayout from "./MasonaryLayout";
 import { userCreatedPinsQuery, userQuery, userSavedPinsQuery } from "../utils/data";
 import { client } from "../utils/client";
@@ -58,9 +58,6 @@ const UserProfile = () => {
         }
     }, [text, userId]);
 
-    const logOut = () => {
-        localStorage.clear()
-    };
 
     if (!user) {
         return <Spinner msg={"Loading user details"} />;

@@ -13,6 +13,7 @@ const PinDetail = ({ user }) => {
     const [pins, setPins] = useState(null);
     const [pinDetail, setPinDetail] = useState(null);
     const [comment, setComment] = useState("");
+    // eslint-disable-next-line no-unused-vars
     const [addingComment, setAddingComment] = useState(false);
 
     const { pinId } = useParams();
@@ -61,6 +62,7 @@ const PinDetail = ({ user }) => {
 
     useEffect(() => {
         fetchPinDetails();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pinId]);
 
     if (!pinDetail) return <Spinner msg={"Loading pin"} />;
