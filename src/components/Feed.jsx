@@ -29,7 +29,7 @@ const Feed = () => {
         }
     }, [categoryId]);
 
-    if (loading) return <Spinner msg="New feeds are loading" />;
+    if (!loading) return <Spinner msg="New feeds are loading" />;
     if (!pins?.length)
         return (
 
