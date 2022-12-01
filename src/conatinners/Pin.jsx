@@ -17,7 +17,7 @@ const MainPin = ({ user }) => {
 
             <div className="h-full">
                 <Routes>
-                    <Route path="/*" element={<Feed />} />
+                    {/* <Route path="/*" element={<Feed />} /> */}
                     <Route path="/" element={<Feed />} />
                     <Route path="user-profile/:userId" element={<UserProfile />} />
                     <Route path="/category/:categoryId" element={<Feed />} />
