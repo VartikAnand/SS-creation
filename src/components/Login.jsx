@@ -25,7 +25,7 @@ const Login = () => {
             navigate('/', { replace: true });
         });
     };
-
+    // Gapi to load information from google cloud
     useEffect(() => {
         function start() {
             gapi.client.init({

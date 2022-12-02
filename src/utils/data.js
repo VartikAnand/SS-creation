@@ -10,9 +10,9 @@ export const categories = [
       "https://source.unsplash.com/1600x900/?anime"
   },
   {
-    name: "toys",
+    name: "Buildings",
     image:
-      "https://source.unsplash.com/1600x900/?toy"
+      "https://source.unsplash.com/1600x900/?house"
   },
   {
     name: "baby",

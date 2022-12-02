@@ -51,8 +51,9 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
     return (
         <div className="m-2">
             <div
+                onTouchStartCapture={true}
                 onTouchStart={() => setPostHovered(true)}
-                onTouchEnd={() => setPostHovered(false)}
+                // onTouchEnd={() => setPostHovered(false)}
                 onTouchMove={() => setPostHovered(true)}
                 onMouseEnter={() => setPostHovered(true)}
                 onMouseLeave={() => setPostHovered(false)}

@@ -22,7 +22,7 @@ const Sidebar = ({ closeToggle, user }) => {
                     className="flex px-5 gap-2 my-6 pt-1 w-190 items-center"
                     onClick={handleCloseSidebar}
                 >
-                    <img src={Logo} alt="logo" className="h-16 border-hidden" />
+                    <img src={Logo} alt="logo" className="h-16 border-hidden" /><span className="items-center align-middle text-5xl pt-5 text-primary border-hidden">Creation</span>
                 </Link>
                 <div className="flex flex-col gap-5">
 
@@ -32,10 +32,10 @@ const Sidebar = ({ closeToggle, user }) => {
                         onClick={handleCloseSidebar}
 
                     >
-                        <RiHomeFill className='text-primary text-3xl' />
+                        <RiHomeFill className='text-primary text-4xl' />
                         Home
                     </NavLink>
-                    <h3 className="mt-2 px-5 text-base 2xl:text-xl">Discover cateogries</h3>
+                    <h3 className="mt-2 px-5 text-base 2xl:text-3xl capitalize font-semibold">Discover cateogries</h3>
                     {categories.slice(0, categories.length - 1).map((category) => (
                         <NavLink
                             to={`/category/${category.name}`}
@@ -56,8 +56,8 @@ const Sidebar = ({ closeToggle, user }) => {
                     onClick={handleCloseSidebar}
                 >
                     <img src={user.image} className="w-10 h-10 rounded-full" alt="user-profile" />
-                    <p>{user.userName}</p>
-                    <IoIosArrowForward />
+                    <p className='text-xl text-lightGray '>{user.userName}</p>
+                    <IoIosArrowForward className='text-2xl text-primary ' />
                 </Link>
             )}
         </div>

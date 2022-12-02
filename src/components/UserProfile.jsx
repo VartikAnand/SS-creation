@@ -9,7 +9,7 @@ import MasonryLayout from './MasonaryLayout';
 
 
 
-const activeBtnStyles = 'bg-red-500 text-white font-bold p-2 rounded-full w-20 outline-none';
+const activeBtnStyles = 'bg-mainColor text-white font-bold p-2 rounded-full w-20 outline-none';
 const notActiveBtnStyles = 'bg-primary mr-4 text-black font-bold p-2 rounded-full w-20 outline-none';
 
 const UserProfile = () => {
