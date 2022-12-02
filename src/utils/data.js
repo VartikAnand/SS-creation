@@ -10,9 +10,9 @@ export const categories = [
       "https://source.unsplash.com/1600x900/?anime"
   },
   {
-    name: "Buildings",
+    name: "Illustration",
     image:
-      "https://source.unsplash.com/1600x900/?house"
+      "https://source.unsplash.com/1600x900/?illustration"
   },
   {
     name: "baby",
@@ -25,9 +25,9 @@ export const categories = [
       "https://source.unsplash.com/1600x900/?vector"
   },
   {
-    name: "music",
+    name: "Blender",
     image:
-      "https://source.unsplash.com/1600x900/?music"
+      "https://source.unsplash.com/1600x900/?Blender"
   },
   {
     name: "designs",
@@ -37,12 +37,12 @@ export const categories = [
   {
     name: "nature",
     image:
-      "https://source.unsplash.com/1600x900/?nature"
+      "https://source.unsplash.com/1600x900/?nature,rain,strom,wave"
   },
   {
-    name: "rain",
+    name: "2D/3D Art",
     image:
-      "https://source.unsplash.com/1600x900/?rain"
+      "https://source.unsplash.com/1600x900/?art"
   },
 
   {
@@ -66,9 +66,9 @@ export const categories = [
       "https://source.unsplash.com/1600x900/?sky"
   },
   {
-    name: "fitness",
+    name: "Animation",
     image:
-      "https://source.unsplash.com/1600x900/?fitness"
+      "https://source.unsplash.com/1600x900/?Animation"
   },
   {
     name: "cats",

@@ -32,7 +32,7 @@ const Sidebar = ({ closeToggle, user }) => {
                         onClick={handleCloseSidebar}
 
                     >
-                        <RiHomeFill className='text-primary text-4xl' />
+                        <RiHomeFill className='text-primary text-3xl' />
                         Home
                     </NavLink>
                     <h3 className="mt-2 px-5 text-base 2xl:text-3xl capitalize font-semibold">Discover cateogries</h3>
